@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8" />
+		<title></title>
+		<link data-require="jqueryui" data-semver="1.10.0" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/simplePagination.css" />
+		<link rel="stylesheet" href="css/footer.css">
+ 
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1.3.5/daterangepicker-bs3.css" />
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.css">
+  
+		<!-- [include libraries + templates] -->
+		<script data-require="jquery" data-semver="2.1.1" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script data-require="jqueryui" data-semver="1.10.0" src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
+		<script type="text/javascript" src="http://usefulscript.ru/js/jQueryRotateCompressed.2.2.js"></script>
+
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="js/daterangepicker.js"></script>
+
+	</head>
+	<body>
+		<div class="page-wrap">
+			<h1>Blog</h1>
+			<div class='nav'>
+				<ul id="mainMenu">
+					<li>
+						<a href='#home' onClick="openBlock('home')">Home</a>
+					</li>
+					<li>
+						<a href='#about' onClick="openBlock('about')">About Us</a>
+					</li>
+					<li>
+						<a href='#contact' onClick="openBlock('contact')">Contact Us</a>
+					</li>
+					<li>
+						<a href='#recomend' onClick="openBlock('recomend')">Gallery</a>
+					</li>
+					<li>
+						<a href='#postAdd' onClick="openBlock('postAdd')">Add post</a>
+					</li>
+					<li class='lamp'>
+						<span></span>
+					</li>
+				</ul>
+			</div>
+			<div id="search" class="indent">
+				<input  id="search_date" type="hidden" class="serif-font">
+				<input  id="search_field" type="text" class="serif-font" >
+				<select id="select" class="serif-font">
+					<option>User</option>
+					<option>Subject</option>
+					<option>Date</option>
+				</select>
+				<input type="button" name="search" value="Search" class="serif-font" onClick="searchPosts()">
+			</div>
+			<div id="about" class="containerX indent" style="display: none;">
+				<div class="g">
+					<h4>About Us</h4>
+					With Spotify, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
+
+					There are millions of tracks on Spotify. So whether you’re working out, partying or relaxing, the right music is always at your fingertips. Choose what you want to listen to, or let Spotify surprise you.
+
+					You can also browse through the music collections of friends, artists and celebrities, or create a radio station and just sit back.
+
+					Soundtrack your life with Spotify. Subscribe or listen for free.
+
+					<h5>Customer Service and Support</h5>
+					<ul>
+						<li>
+							Help section The best way to help yourself is to look in the Help section. This answers our most frequently asked questions and will help you to use all Spotify's features.
+						</li>
+						<li>
+							Community support If your question is not answered in our Help section, you can also check the Community. In the Community forum you can create or vote for feature requests; let us know if you are having a problem; or find help from other Spotify users. Make sure to read company updates about recent events that might affect your enjoyment of the service.
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="contact" class="containerX indent" style="display: none;">
+				<div class="f">
+					<h4>North American Corporate Contacts</h4>
+					<h5>United States</h5>
+					<ul class="square">
+						<li>
+							Media Helpline
+							<br>
+							<strong>(408) 974-2042</strong>
+						</li>
+						<li>
+							Software Upgrade Center
+							<br>
+							<strong>(888) 840-8433</strong>
+						</li>
+						<li>
+							Reseller Referral (Resellers, Trainers, Consultants)
+							<br>
+							<strong>(800) 538-9696</strong>
+						</li>
+					</ul>
+
+					<h5>Canada</h5>
+					<ul class="square">
+						<li>
+							Store (Consumer and Education Individuals)
+							<br>
+							<strong>800-692-7753</strong>
+						</li>
+					</ul>
+
+					<h5>Mexico</h5>
+					<ul class="square">
+						<li>
+							Store (Consumer and Education Individuals)
+							<br>
+							<strong>001-800-692-7753 </strong>
+						</li>
+						<li>
+							Store (Small Business)
+							<br>
+							<strong> 001-800-692-7753 </strong>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="recomend" class="containerX indent" style="display: none;">
+				<script id="images-template" type="x-tmpl-mustache">
+					<table>
+					{{#.}}
+					<td>
+					<tr class="images">
+					<a href='{{link}}' title='{{title}}' data-gallery> <img src='{{link}}' alt="{{alt}}" width="150" height="150"/> </a>
+					</tr>
+					</td>
+					{{/.}}
+					</table>
+				</script>
+				<div>
+					<!-- class="f" -->
+					<div id="links">
+						<!-- TEMPLATE IMAGES-->
+					</div>
+					<div id="blueimp-gallery" class="blueimp-gallery">
+						<!-- The container for the modal slides -->
+						<div class="slides"></div>
+						<!-- Controls for the borderless lightbox -->
+						<h3 class="title"></h3>
+						<a class="prev">‹</a>
+						<a class="next">›</a>
+						<a class="close">×</a>
+						<a class="play-pause"></a>
+						<ol class="indicator"></ol>
+						<!-- The modal dialog, which will be used to wrap the lightbox content -->
+						<div class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" aria-hidden="true">
+											&times;
+										</button>
+										<h4 class="modal-title"></h4>
+									</div>
+									<div class="modal-body next"></div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default pull-left prev">
+											<i class="glyphicon glyphicon-chevron-left"></i>
+											Previous
+										</button>
+										<button type="button" class="btn btn-primary next">
+											Next
+											<i class="glyphicon glyphicon-chevron-right"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- TEMPLATE FOR MAIN_CONTAINER -->
+			<script id="template" type="x-tmpl-mustache">
+				{{#.}}
+				<div class="containerX">
+				<h2 class="post-title">{{subject}}</h2>
+				<div class="post-meta alignleft">Posted on {{date}} by {{author}} </div>
+				<div class="post-entry"><p>{{{text}}}</p></div>
+				{{#id}}
+					<input type="button" value="Delete" onclick="deletePost('{{id}}')"/>
+				{{/id}}
+				</div>
+				{{/.}}
+			</script>
+			<div id="home" class="indent" style="display: block;">
+				<div>
+					<a><img onClick="showPosts(false)" src="http://cdn4.freepik.com/image/th/318-41988.jpg" width="40" height="30"/></a>
+					<a><img id="rotate180" onClick="showPosts(true)"  src="http://cdn4.freepik.com/image/th/318-41988.jpg" width="40" height="30"/></a>
+				</div>
+				<div id="main_container">
+					<!-- Load data -->
+				</div>
+				<div id="light-pagination" class="paginationX">
+
+				</div>
+			</div>
+			<div id="postAdd" class="containerX indent" style="display: none;">
+				<div class="form">
+					<p>
+						Author
+					</p>
+					<input id="author" type="text" placeholder="example:Admin" />
+					<p>
+						Subject
+					</p>
+					<input id="subject" type="text" placeholder="example:Subject"/>
+					<p>
+						Text
+					</p>
+					<textarea id="text" rows="10" cols="20" placeholder="example:Text"></textarea>
+					<input type="button" value="Submit" onclick="buttonSendForm()"/>
+				</div>
+			</div>
+		</div>
+		<footer class="site-footer">
+			<p>
+				Copyright © 2014 Kapachou Viktar
+			</p>
+		</footer>
+		<script src="js/jquery.simplePagination.js"></script><!-- DELETE THIS -->
+		<script src="js/script.js"></script>
+
+		<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.js"></script>
+	</body>
+
+</html>
+
