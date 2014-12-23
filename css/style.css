@@ -1,8 +1,19 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
 
+
+.scroll{
+	overflow-y: auto;
+}
+.txtelem{
+	line-height: 20px;
+}
+.form-btn {
+	margin-top: 5%;
+}
+
 .images {
 	padding: 20px;
-	padding-bottom: 5px;
+	/*padding-bottom: 5px;*/
 }
 
 .indent {
@@ -83,7 +94,6 @@
 	font-size: 15px;
 	padding: 10px 15px;
 	line-height: 22px;
-	overflow: hidden;
 }
 .post-entry p {
 	padding-top: 7px;
@@ -126,6 +136,7 @@ h4, h5 {
 .form {
 	font: 400 14px 'pt sans', sans-serif;
 	margin-left: 40%;
+	max-width: 20%;
 }
 .f {
 	font: 400 14px 'pt sans', sans-serif;
